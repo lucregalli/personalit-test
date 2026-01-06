@@ -151,36 +151,44 @@ h1 {
 }
 
 /* ==========================================
-   RESPONSIVE MOBILE
-========================================== */
-/* ==========================================
    RESPONSIVE MOBILE OTTIMIZZATO
 ========================================== */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .quiz-container {
-    padding: 20px;
+    padding: 10px;
   }
 
   .scale {
-    flex-direction: column;
-    align-items: center;  /* centra tutto */
+    display: flex;
+    flex-direction: row;            /* mantiene etichette e icone in riga */
+    align-items: center;
+    justify-content: space-between; /* etichette ai lati */
   }
 
   .scale-text {
-    width: 100%;
+    flex: 0 0 auto;                /* dimensione fissa */
+    font-size: 10px;
+    max-width: 70px;               /* non occupa troppo spazio */
     text-align: center;
-    margin-bottom: 8px;
-    font-size: 14px;
   }
 
   .levels {
+    display: flex;
+    flex-wrap: nowrap;             /* NO a capo, tutte su una riga */
+    overflow-x: auto;              /* scroll orizzontale se troppo stretto */
     justify-content: center;
-    gap: 8px;             /* leggermente più piccolo */
-    flex-wrap: wrap;       /* permette di andare su più righe */
+    gap: 0px;                      /* spazio tra le icone */
+    flex: 1;
+    margin: 0 5px;
+    -webkit-overflow-scrolling: touch; /* scroll fluido su iOS */
+  }
+
+  .level {
+    flex-shrink: 0;                /* non si riduce oltre la dimensione impostata */
   }
 
   .level img {
-    width: 40px;           /* dimensione leggermente ridotta */
+    width: 26px;                    /* dimensione piccola per stare in riga */
     height: auto;
   }
 
@@ -194,5 +202,4 @@ h1 {
     font-size: 16px;
   }
 }
-
 
