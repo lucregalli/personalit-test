@@ -1,0 +1,196 @@
+/* ==========================================
+   FONTS
+========================================== */
+@font-face {
+  font-family: 'jelek';
+  src: url('font/jelek Type.otf') format('opentype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'chunko';
+  src: url('font/chunko-bold-demo.regular.otf') format('opentype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+}
+/* ==========================================
+   RESET / BODY
+========================================== */
+body {
+  font-family: Arial, sans-serif; /* fallback generico */
+  background-color: #f0f0f5;
+  margin: 0;
+  padding: 20px;
+}
+
+/* ==========================================
+   CONTENITORE CENTRALE
+========================================== */
+.quiz-container {
+  max-width: 700px;           /* larghezza massima */
+  margin: 0 auto;             /* centra orizzontalmente */
+  padding: 30px;
+  background-color: #ffffff;  /* sfondo chiaro */
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   TITOLO
+========================================== */
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: 'chunko', sans-serif;
+  font-size: 36px;
+  letter-spacing: 2px;
+}
+
+/* ==========================================
+   DOMANDE
+========================================== */
+.question {
+  margin-bottom: 25px;
+}
+
+.question label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+}
+
+/* ==========================================
+   SCALE (IMMAGINI + ETICHETTE)
+========================================== */
+.scale {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* etichette ai lati */
+  gap: 12px;
+}
+
+.scale-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.scale-text.left {
+  width: 160px;
+  text-align: right;
+}
+
+.scale-text.right {
+  width: 160px;
+  text-align: left;
+}
+
+.levels {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex: 1; /* occupa spazio tra le etichette */
+}
+
+.level {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.level.selected {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.level img {
+  width: 40px;
+  height: auto;
+  padding: 5px;
+}
+
+/* ==========================================
+   PULSANTE SUBMIT
+========================================== */
+#submit-btn {
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+#submit-btn:hover {
+  background-color: #45a049;
+}
+
+/* ==========================================
+   RISULTATO
+========================================== */
+#result {
+  display: none;  /* inizialmente nascosto */
+  text-align: center;
+  font-size: 18px;
+  margin-top: 0;
+}
+
+#result h2 {
+  margin-bottom: 20px;
+}
+
+#result p {
+  line-height: 1.5;
+}
+
+/* ==========================================
+   RESPONSIVE MOBILE
+========================================== */
+/* ==========================================
+   RESPONSIVE MOBILE OTTIMIZZATO
+========================================== */
+@media (max-width: 600px) {
+  .quiz-container {
+    padding: 20px;
+  }
+
+  .scale {
+    flex-direction: column;
+    align-items: center;  /* centra tutto */
+  }
+
+  .scale-text {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .levels {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .level img {
+    width: 50px;   /* più grande per touch */
+    padding: 8px;
+  }
+
+  #submit-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+  }
+
+  #result {
+    font-size: 16px;
+  }
+}
+
