@@ -177,7 +177,7 @@ h1 {
     flex-wrap: nowrap;             
     overflow-x: auto;              
     justify-content: center;
-    gap: 2px;                       /* gap minimo */
+    gap: 0px;                       /* gap minimo */
     flex: 1;
     margin: 0 2px;
     -webkit-overflow-scrolling: touch; 
@@ -188,7 +188,7 @@ h1 {
   }
 
   .level img {
-    width: 22px;                    /* icone piccolissime */
+    width: 18px;                    /* icone piccolissime */
     height: auto;
   }
 
