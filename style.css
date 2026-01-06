@@ -153,53 +153,54 @@ h1 {
 /* ==========================================
    RESPONSIVE MOBILE OTTIMIZZATO
 ========================================== */
-@media (max-width: 500px) {
+@media (max-width: 400px) {
   .quiz-container {
-    padding: 10px;
+    padding: 8px;
   }
 
   .scale {
     display: flex;
-    flex-direction: row;            /* mantiene etichette e icone in riga */
+    flex-direction: row;            
     align-items: center;
-    justify-content: space-between; /* etichette ai lati */
+    justify-content: space-between;
   }
 
   .scale-text {
-    flex: 0 0 auto;                /* dimensione fissa */
-    font-size: 8px;
-    max-width: 70px;               /* non occupa troppo spazio */
+    flex: 0 0 auto;                
+    font-size: 6px;                 /* più piccolo */
+    max-width: 60px;               
     text-align: center;
   }
 
   .levels {
     display: flex;
-    flex-wrap: nowrap;             /* NO a capo, tutte su una riga */
-    overflow-x: auto;              /* scroll orizzontale se troppo stretto */
+    flex-wrap: nowrap;             
+    overflow-x: auto;              
     justify-content: center;
-    gap: 0px;                      /* spazio tra le icone */
+    gap: 2px;                       /* gap minimo */
     flex: 1;
-    margin: 0 5px;
-    -webkit-overflow-scrolling: touch; /* scroll fluido su iOS */
+    margin: 0 2px;
+    -webkit-overflow-scrolling: touch; 
   }
 
   .level {
-    flex-shrink: 0;                /* non si riduce oltre la dimensione impostata */
+    flex-shrink: 0;                
   }
 
   .level img {
-    width: 26px;                    /* dimensione piccola per stare in riga */
+    width: 22px;                    /* icone piccolissime */
     height: auto;
   }
 
   #submit-btn {
     width: 100%;
-    padding: 14px;
-    font-size: 18px;
+    padding: 12px;
+    font-size: 16px;
   }
 
   #result {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
+
 
