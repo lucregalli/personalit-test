@@ -153,7 +153,7 @@ h1 {
 /* ==========================================
    RESPONSIVE MOBILE OTTIMIZZATO
 ========================================== */
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .quiz-container {
     padding: 10px;
   }
@@ -167,7 +167,7 @@ h1 {
 
   .scale-text {
     flex: 0 0 auto;                /* dimensione fissa */
-    font-size: 10px;
+    font-size: 8px;
     max-width: 70px;               /* non occupa troppo spazio */
     text-align: center;
   }
