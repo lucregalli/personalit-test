@@ -162,16 +162,32 @@ h1 {
 
   .scale {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center; /* centra le icone */
+    gap: 5px; /* riduci lo spazio verticale */
   }
 
   .scale-text {
     width: 100%;
     text-align: center;
-    margin-bottom: 10px;
+    margin-top: 5px; /* spazio tra icona e testo */
+    margin-bottom: 0;
+  }
+
+  .scale-text.left,
+  .scale-text.right {
+    width: auto; /* rimuove larghezza fissa */
   }
 
   .levels {
     justify-content: center;
+    gap: 10px; /* distanza tra le icone */
+  }
+
+  /* opzionale: rimuove il box/contorno dalle icone */
+  .level {
+    border: none; 
+    background: none;
+    padding: 0;
   }
 }
+
