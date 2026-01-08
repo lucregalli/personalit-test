@@ -5,11 +5,11 @@ const questions = [
   "Mi piace comprendere a fondo le meccaniche di gioco.",
   "Mi piace perdermi nel mondo di gioco, nelle mappe e nei dettagli.",
   "Mi piacciono i giochi che funzionano bene anche se giocati da soli.",
-  "Ottimizzare risorse, build o percorsi mi dÃ  soddisfazione.",
+  "Ottimizzare risorse, build o percorsi mi dà soddisfazione.",
 
-  "Il gioco Ã¨ piÃ¹ divertente quando interagisco con altri giocatori.",
+  "Il gioco è più divertente quando interagisco con altri giocatori.",
   "Mi piace osservare come giocano gli altri e reagire alle loro azioni.",
-  "Le dinamiche sociali sono piÃ¹ importanti dellâ€™ambientazione o della storia.",
+  "Le dinamiche sociali sono più importanti dell'ambientazione o della storia.",
   "Senza altri giocatori, il gioco perde gran parte del suo fascino.",
 
   "Mi piace avere obiettivi chiari da raggiungere.",
@@ -19,7 +19,7 @@ const questions = [
 
   "Mi piace esplorare anche senza un obiettivo preciso.",
   "Sperimento cose nuove anche se non sono efficienti.",
-  "Lâ€™esperienza conta piÃ¹ del risultato finale.",
+  "L'esperienza conta più del risultato finale.",
   "Mi piace provare approcci e strategie diverse."
 ];
 

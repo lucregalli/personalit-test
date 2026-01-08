@@ -14,10 +14,8 @@
 }
 
 @font-face {
-  src: href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap";
   font-family: 'Space Grotesk';
 }
-
 /* ==========================================
    RESET / BODY
 ========================================== */
@@ -153,41 +151,65 @@ h1 {
 }
 
 /* ==========================================
-   RESPONSIVE MOBILE
+   RESPONSIVE MOBILE OTTIMIZZATO
 ========================================== */
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .quiz-container {
-    padding: 20px;
+    color: transparent;
+    padding: 8px;
   }
 
+  /* Contenitore scala */
   .scale {
+    display: flex;
     flex-direction: column;
-    align-items: center; /* centra le icone */
-    gap: 5px; /* riduci lo spazio verticale */
+    align-items: center;
   }
 
+  /* Livelli (icone) */
+  .levels {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  /* Contenitore etichette */
   .scale-text {
-    width: 100%;
-    text-align: center;
-    margin-top: 5px; /* spazio tra icona e testo */
-    margin-bottom: 0;
+    font-size: 14px;
+    opacity: 0.85;
   }
 
+  /* Wrapper virtuale per le etichette */
+  .scale {
+    position: relative;
+  }
+
+  /* Sposta le etichette sotto */
   .scale-text.left,
   .scale-text.right {
-    width: auto; /* rimuove larghezza fissa */
+    display: inline-block;
+    width: 50%;
+  }
+
+  /* Riga etichette */
+  .scale-text.left {
+    text-align: left;
+    margin-right: auto;
+  }
+
+  .scale-text.right {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  /* Nuova riga sotto le icone */
+  .scale-text.left,
+  .scale-text.right {
+    order: 2;
   }
 
   .levels {
-    justify-content: center;
-    gap: 10px; /* distanza tra le icone */
-  }
-
-  /* opzionale: rimuove il box/contorno dalle icone */
-  .level {
-    border: none; 
-    background: none;
-    padding: 0;
+    order: 1;
   }
 }
-
