@@ -14,8 +14,10 @@
 }
 
 @font-face {
+  src: href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap";
   font-family: 'Space Grotesk';
 }
+
 /* ==========================================
    RESET / BODY
 ========================================== */
@@ -151,56 +153,25 @@ h1 {
 }
 
 /* ==========================================
-   RESPONSIVE MOBILE OTTIMIZZATO
+   RESPONSIVE MOBILE
 ========================================== */
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .quiz-container {
-    padding: 8px;
+    padding: 20px;
   }
 
   .scale {
-    display: flex;
-    flex-direction: row;            
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .scale-text {
-    flex: 0 0 auto;                
-    font-size: 6px;                 /* più piccolo */
-    max-width: 60px;               
+    width: 100%;
     text-align: center;
+    margin-bottom: 10px;
   }
 
   .levels {
-    display: flex;
-    flex-wrap: nowrap;             
-    overflow-x: auto;              
     justify-content: center;
-    gap: 0px;                       /* gap minimo */
-    flex: 1;
-    margin: 0 2px;
-    -webkit-overflow-scrolling: touch; 
-  }
-
-  .level {
-    flex-shrink: 0;                
-  }
-
-  .level img {
-    width: 18px;                    /* icone piccolissime */
-    height: auto;
-  }
-
-  #submit-btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  #result {
-    font-size: 14px;
   }
 }
-
-
