@@ -1,13 +1,15 @@
-// Domande in italiano
+// ===============================
+// DOMANDE
+// ===============================
 const questions = [
   "Mi piace comprendere a fondo le meccaniche di gioco.",
   "Mi piace perdermi nel mondo di gioco, nelle mappe e nei dettagli.",
   "Mi piacciono i giochi che funzionano bene anche se giocati da soli.",
-  "Ottimizzare risorse, build o percorsi mi dà soddisfazione.",
+  "Ottimizzare risorse, build o percorsi mi dÃ  soddisfazione.",
 
-  "Il gioco è più divertente quando interagisco con altri giocatori.",
+  "Il gioco Ã¨ piÃ¹ divertente quando interagisco con altri giocatori.",
   "Mi piace osservare come giocano gli altri e reagire alle loro azioni.",
-  "Le dinamiche sociali sono più importanti dell’ambientazione o della storia.",
+  "Le dinamiche sociali sono piÃ¹ importanti dellâ€™ambientazione o della storia.",
   "Senza altri giocatori, il gioco perde gran parte del suo fascino.",
 
   "Mi piace avere obiettivi chiari da raggiungere.",
@@ -17,11 +19,13 @@ const questions = [
 
   "Mi piace esplorare anche senza un obiettivo preciso.",
   "Sperimento cose nuove anche se non sono efficienti.",
-  "L’esperienza conta più del risultato finale.",
+  "Lâ€™esperienza conta piÃ¹ del risultato finale.",
   "Mi piace provare approcci e strategie diverse."
 ];
 
-// Livelli / icone (7 livelli)
+// ===============================
+// ICONE LIVELLI
+// ===============================
 const levelIcons = [
   "<img src='img/1x/Risorsa 1.png'>",
   "<img src='img/1x/Risorsa 2.png'>",
@@ -35,7 +39,9 @@ const levelIcons = [
 const answers = new Array(questions.length).fill(4);
 const container = document.getElementById("questions");
 
-// Genera le domande
+// ===============================
+// GENERA DOMANDE
+// ===============================
 questions.forEach((text, qIndex) => {
   const div = document.createElement("div");
   div.className = "question";
@@ -53,128 +59,145 @@ questions.forEach((text, qIndex) => {
   div.innerHTML = `
     <label>${text}</label>
     <div class="scale">
-      <span class="scale-text left">Completamente in disaccordo</span>
+      <span class="scale-text left">Completamente d'accordo</span>
       <div class="levels">${levelsHTML}</div>
-      <span class="scale-text right">Completamente d'accordo</span>
+      <span class="scale-text right">Completamente in disaccordo</span>
     </div>
   `;
 
   container.appendChild(div);
 });
 
-// Click sui livelli con scroll automatico per mobile
+// ===============================
+// CLICK LIVELLI
+// ===============================
 document.querySelectorAll(".level").forEach(level => {
   level.addEventListener("click", () => {
     const q = level.dataset.question;
     const val = parseInt(level.dataset.value);
     answers[q] = val;
 
-    // rimuove selezione precedente
     document
       .querySelectorAll(`.level[data-question="${q}"]`)
       .forEach(l => l.classList.remove("selected"));
 
-    // aggiunge selezione
     level.classList.add("selected");
-
-    // scroll automatico alla prossima domanda su mobile
-    if (window.innerWidth < 600) {
-      const nextQ = document.querySelector(`.question:nth-child(${parseInt(q)+2})`);
-      if (nextQ) {
-        nextQ.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
   });
 });
 
-// Submit
+// ===============================
+// ICONE PROFILI
+// ===============================
+const icons = {
+  "Stratega": "ðŸ§ ",
+  "Guerriero": "âš”ï¸",
+  "Cartografo": "ðŸ§­",
+  "Inventore": "ðŸ§ª",
+  "Curatore": "â¤ï¸",
+  "Araldo": "ðŸ“£",
+  "Cacciatore": "ðŸ¹",
+  "Condottiero": "ðŸ”¥"
+};
+
+// ===============================
+// DESCRIZIONI
+// ===============================
+const descriptions = {
+  "Stratega": "Analitico e metodico, pianifichi ogni mossa sfruttando informazioni nascoste.",
+  "Guerriero": "Determinato e diretto, affronti le sfide puntando alla vittoria.",
+  "Cartografo": "Esploratore paziente, scopri il mondo di gioco senza fretta.",
+  "Inventore": "Sperimentatore creativo, provi soluzioni nuove e imprevedibili.",
+  "Curatore": "Supportivo ed empatico, tieni unito e vivo il gruppo.",
+  "Araldo": "Leader carismatico, guidi e motivi gli altri allâ€™azione.",
+  "Cacciatore": "Osservatore letale, studi il bersaglio prima di colpire.",
+  "Condottiero": "Dominante e aggressivo, imponi il tuo controllo sugli altri."
+};
+
+// ===============================
+// ABILITÃ€
+// ===============================
+const abilities = {
+  "Stratega": { ability: "Visione dei Dati Segreti", effect: "Vedi informazioni e statistiche nascoste." },
+  "Guerriero": { ability: "Segugio", effect: "Tracci e insegui un obiettivo prioritario." },
+  "Cartografo": { ability: "Mappa Estesa", effect: "Riveli aree e percorsi segreti." },
+  "Inventore": { ability: "Effetti Variabili", effect: "Ogni azione ha effetti imprevedibili." },
+  "Curatore": { ability: "Vita Extra", effect: "Concedi una seconda possibilitÃ  a un alleato." },
+  "Araldo": { ability: "Ispirazione", effect: "Fornisci bonus temporanei al gruppo." },
+  "Cacciatore": { ability: "Bussola", effect: "Individui la direzione dei bersagli." },
+  "Condottiero": { ability: "Intimidazione", effect: "Indebolisci gli avversari vicini." }
+};
+
+// ===============================
+// SUBMIT + LOGICA COMPLETA
+// ===============================
 document.getElementById("testForm").addEventListener("submit", e => {
   e.preventDefault();
 
-  const world = answers.slice(0,4).reduce((a,b)=>a+b,0);
-  const people = answers.slice(4,8).reduce((a,b)=>a+b,0);
-  const action = answers.slice(8,12).reduce((a,b)=>a+b,0);
-  const interact = answers.slice(12,16).reduce((a,b)=>a+b,0);
+  const world = answers.slice(0, 4).reduce((a, b) => a + b, 0);
+  const people = answers.slice(4, 8).reduce((a, b) => a + b, 0);
+  const action = answers.slice(8, 12).reduce((a, b) => a + b, 0);
+  const interact = answers.slice(12, 16).reduce((a, b) => a + b, 0);
 
-  let profile = '';
+  let profile = "";
 
-  // Determinazione personalità
-  if (world >= people && action >= interact) profile = "Achiever Ambizioso";
-  else if (world >= people && interact > action) profile = "Explorer Sperimentale";
-  else if (people > world && interact >= action) profile = "Socializer Gentile";
-  else if (people > world && action > interact) profile = "Socializer Intraprendente";
-  else if (action >= world && action >= people && action >= interact) profile = "Killer Dominante";
-  else profile = "Achiever Metodico";
-
-  const descriptions = {
-    "Achiever Metodico": "Pianificatore e preciso, ami completare ogni sfida nel dettaglio.",
-    "Achiever Ambizioso": "Cerchi risultati e vittorie, sei motivato dalle sfide.",
-    "Explorer Contemplativo": "Ami scoprire e osservare il mondo di gioco senza fretta.",
-    "Explorer Sperimentale": "Ti piace provare nuove strategie e approcci, anche rischiosi.",
-    "Socializer Gentile": "Collabora e aiuta gli altri, ami l’interazione positiva.",
-    "Socializer Intraprendente": "Guida gli altri, sei intraprendente e motivi il gruppo.",
-    "Killer Tragico": "Competitivo ma riflessivo, ami dominare senza essere aggressivo.",
-    "Killer Dominante": "Cerchi dominio e vittoria, vuoi essere al top in ogni sfida."
-  };
-
-  const icons = {
-    "Achiever Metodico": "🏆",
-    "Achiever Ambizioso": "🏅",
-    "Explorer Contemplativo": "🧭",
-    "Explorer Sperimentale": "🔬",
-    "Socializer Gentile": "🤝",
-    "Socializer Intraprendente": "💪",
-    "Killer Tragico": "⚔️",
-    "Killer Dominante": "🔥"
-  };
-
-  const resultDiv = document.getElementById("result");
-
-  // Colori sfondo e testo
-  let bgColor = '', textColor = '';
-  if (profile.includes("Achiever")) {
-    bgColor = "#B8860B";    // giallo scuro
-    textColor = "#FFF8DC";  // chiaro
-  } else if (profile.includes("Explorer")) {
-    bgColor = "#2E8B57";    // verde scuro
-    textColor = "#DFFFE0";  // verde chiaro
-  } else if (profile.includes("Socializer")) {
-    bgColor = "#1565C0";    // blu scuro
-    textColor = "#CDE7FF";  // blu chiaro
-  } else if (profile.includes("Killer")) {
-    bgColor = "#8B0000";    // rosso scuro
-    textColor = "#FFCCCC";  // rosa chiaro
+  // Dominanze forti
+  if (action >= world && action >= people && action >= interact && action >= 20) {
+    profile = "Tiranno";
+  }
+  else if (world >= people && world >= action && world >= interact && world >= 20) {
+    profile = "Stratega";
   }
 
-  // Nascondi quiz
+  // Esplorazione
+  else if (interact > action && world > people) {
+    profile = "Cartografo";
+  }
+  else if (interact > action && people == world) {
+    profile = "Inventore";
+  }
+
+  // SocialitÃ 
+  else if (people > world && interact == action) {
+    profile = "Curatore";
+  }
+  else if (people > world && action > interact) {
+    profile = "Araldo";
+  }
+
+  // Azione
+  else if (action >= interact && world == people) {
+    profile = "Guerriero";
+  }
+  else {
+    profile = "Cacciatore";
+  }
+
+  const resultDiv = document.getElementById("result");
   document.querySelector(".quiz-container").style.display = "none";
 
-  // Mostra risultato al centro
   resultDiv.style.display = "flex";
   resultDiv.style.flexDirection = "column";
   resultDiv.style.justifyContent = "center";
   resultDiv.style.alignItems = "center";
   resultDiv.style.minHeight = "60vh";
-  resultDiv.style.padding = "30px";
+  resultDiv.style.padding = "40px";
   resultDiv.style.borderRadius = "12px";
-  resultDiv.style.fontFamily = "'Chunko', sans-serif";
-  resultDiv.style.textAlign = "center";
-  resultDiv.style.transition = "background-color 1s ease, color 1s ease";
 
-  // Applica colori con transizione
-  setTimeout(() => {
-    resultDiv.style.backgroundColor = bgColor;
-    resultDiv.style.color = textColor;
-  }, 50);
+  const ability = abilities[profile];
 
-  // Inserisci contenuto
-  resultDiv.innerHTML = `
-    <h2 style="font-size: 40px; margin-bottom: 20px;">${icons[profile]} ${profile}</h2>
-    <p style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; text-align: center; max-width: 90%; line-height: 1.5;">
-      ${descriptions[profile]}
-    </p>
-  `;
+resultDiv.innerHTML = `
+  <h2 style="font-family: chunko; font-size:50px; text-transform: uppercase; letter-spacing: 2px;">
+    ${icons[profile]} ${profile}
+  </h2>
+  <p style="font-size:26px; text-align:center; max-width:640px;">
+    ${descriptions[profile]}
+  </p>
+  <div style="margin-top:25px; padding:25px; border-radius:12px; background:rgba(0,0,0,.3)">
+    <h3 style="font-family: chunko; font-size:34px; text-transform: uppercase; letter-spacing: 1.5px;">
+      â­ ${ability.ability}
+    </h3>
+    <p style="font-size:22px">${ability.effect}</p>
+  </div>
+`;
 
-  // Scroll su risultato (utile su mobile)
-  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
