@@ -9,31 +9,31 @@ const questions = [
 
   "Il gioco è più divertente quando interagisco con altri giocatori.",
   "Mi piace osservare come giocano gli altri e reagire alle loro azioni.",
-  "Le dinamiche sociali sono più importanti dell'ambientazione o della storia.",
-  "Senza altri giocatori, il gioco perde gran parte del suo fascino.",
+  "Le dinamiche sociali sono più importanti della storia.",
+  "Senza altri giocatori, il gioco perde fascino.",
 
   "Mi piace avere obiettivi chiari da raggiungere.",
-  "Sono motivato dai risultati, dalle vittorie o dal completamento.",
+  "Sono motivato dai risultati e dalle vittorie.",
   "Preferisco agire piuttosto che osservare.",
-  "Mi piace conquistare o portare a termine qualcosa nel gioco.",
+  "Mi piace portare a termine ciò che inizio.",
 
-  "Mi piace esplorare anche senza un obiettivo preciso.",
-  "Sperimento cose nuove anche se non sono efficienti.",
-  "L'esperienza conta più del risultato finale.",
-  "Mi piace provare approcci e strategie diverse."
+  "Mi piace esplorare senza uno scopo preciso.",
+  "Sperimento anche se non è efficiente.",
+  "L’esperienza conta più del risultato.",
+  "Mi piace provare approcci diversi."
 ];
 
 // ===============================
-// ICONE LIVELLI
+// ICONE SCALA (7)
 // ===============================
 const levelIcons = [
-  "<img src='img/1x/Risorsa 1.png'>",
-  "<img src='img/1x/Risorsa 2.png'>",
-  "<img src='img/1x/Risorsa 3.png'>",
-  "<img src='img/1x/Risorsa 4.png'>",
-  "<img src='img/1x/Risorsa 5.png'>",
-  "<img src='img/1x/Risorsa 6.png'>",
-  "<img src='img/1x/Risorsa 7.png'>"
+  "img/1x/Risorsa 1.png",
+  "img/1x/Risorsa 2.png",
+  "img/1x/Risorsa 3.png",
+  "img/1x/Risorsa 4.png",
+  "img/1x/Risorsa 5.png",
+  "img/1x/Risorsa 6.png",
+  "img/1x/Risorsa 7.png"
 ];
 
 const answers = new Array(questions.length).fill(4);
@@ -47,21 +47,22 @@ questions.forEach((text, qIndex) => {
   div.className = "question";
 
   let levelsHTML = "";
-  levelIcons.forEach((icon, i) => {
+  levelIcons.forEach((src, i) => {
     levelsHTML += `
       <span class="level ${i === 3 ? "selected" : ""}"
             data-question="${qIndex}"
             data-value="${i + 1}">
-        ${icon}
-      </span>`;
+        <img src="${src}">
+      </span>
+    `;
   });
 
   div.innerHTML = `
     <label>${text}</label>
     <div class="scale">
-      <span class="scale-text left">Completamente d'accordo</span>
+      <span class="scale-text">D'accordo</span>
       <div class="levels">${levelsHTML}</div>
-      <span class="scale-text right">Completamente in disaccordo</span>
+      <span class="scale-text">In disaccordo</span>
     </div>
   `;
 
@@ -69,66 +70,48 @@ questions.forEach((text, qIndex) => {
 });
 
 // ===============================
-// CLICK LIVELLI
+// CLICK RISPOSTE
 // ===============================
-document.querySelectorAll(".level").forEach(level => {
-  level.addEventListener("click", () => {
-    const q = level.dataset.question;
-    const val = parseInt(level.dataset.value);
-    answers[q] = val;
+document.addEventListener("click", e => {
+  const level = e.target.closest(".level");
+  if (!level) return;
 
-    document
-      .querySelectorAll(`.level[data-question="${q}"]`)
-      .forEach(l => l.classList.remove("selected"));
+  const q = level.dataset.question;
+  const val = parseInt(level.dataset.value);
+  answers[q] = val;
 
-    level.classList.add("selected");
-  });
+  document
+    .querySelectorAll(`.level[data-question="${q}"]`)
+    .forEach(l => l.classList.remove("selected"));
+
+  level.classList.add("selected");
 });
 
 // ===============================
-// ICONE PROFILI
+// PROFILI
 // ===============================
 const icons = {
-  "Stratega": "ðŸ§ ",
-  "Guerriero": "âš”ï¸",
-  "Cartografo": "ðŸ§­",
-  "Inventore": "ðŸ§ª",
-  "Curatore": "â¤ï¸",
-  "Araldo": "ðŸ“£",
-  "Cacciatore": "ðŸ¹",
-  "Condottiero": "ðŸ”¥"
+  "Stratega": "🧠",
+  "Guerriero": "🛡️",
+  "Curatore": "❤️",
+  "Cacciatore": "🏹"
 };
 
-// ===============================
-// DESCRIZIONI
-// ===============================
 const descriptions = {
-  "Stratega": "Analitico e metodico, pianifichi ogni mossa sfruttando informazioni nascoste.",
-  "Guerriero": "Determinato e diretto, affronti le sfide puntando alla vittoria.",
-  "Cartografo": "Esploratore paziente, scopri il mondo di gioco senza fretta.",
-  "Inventore": "Sperimentatore creativo, provi soluzioni nuove e imprevedibili.",
-  "Curatore": "Supportivo ed empatico, tieni unito e vivo il gruppo.",
-  "Araldo": "Leader carismatico, guidi e motivi gli altri allâ€™azione.",
-  "Cacciatore": "Osservatore letale, studi il bersaglio prima di colpire.",
-  "Condottiero": "Dominante e aggressivo, imponi il tuo controllo sugli altri."
+  "Stratega": "Analitico e riflessivo, ami capire come funzionano le cose prima di agire.",
+  "Guerriero": "Determinato e orientato all’azione, punti dritto all’obiettivo.",
+  "Curatore": "Empatico e collaborativo, trovi valore nell’aiutare gli altri.",
+  "Cacciatore": "Istintivo e solitario, reagisci rapidamente cogliendo le opportunità."
 };
-
-// ===============================
-// ABILITÃ€
-// ===============================
 const abilities = {
-  "Stratega": { ability: "Visione dei Dati Segreti", effect: "Vedi informazioni e statistiche nascoste." },
-  "Guerriero": { ability: "Segugio", effect: "Tracci e insegui un obiettivo prioritario." },
-  "Cartografo": { ability: "Mappa Estesa", effect: "Riveli aree e percorsi segreti." },
-  "Inventore": { ability: "Effetti Variabili", effect: "Ogni azione ha effetti imprevedibili." },
-  "Curatore": { ability: "Vita Extra", effect: "Concedi una seconda possibilitÃ  a un alleato." },
-  "Araldo": { ability: "Ispirazione", effect: "Fornisci bonus temporanei al gruppo." },
-  "Cacciatore": { ability: "Bussola", effect: "Individui la direzione dei bersagli." },
-  "Condottiero": { ability: "Intimidazione", effect: "Indebolisci gli avversari vicini." }
+  "Stratega": { ability: "Visione Tattica", effect: "Comprendi sistemi e regole nascoste." },
+  "Guerriero": { ability: "Assalto Diretto", effect: "Ottieni vantaggi agendo subito." },
+  "Curatore": { ability: "Supporto", effect: "Sostieni e rafforzi gli altri." },
+  "Cacciatore": { ability: "Istinto", effect: "Reagisci più velocemente alle occasioni." }
 };
 
 // ===============================
-// SUBMIT + LOGICA COMPLETA
+// SUBMIT
 // ===============================
 document.getElementById("testForm").addEventListener("submit", e => {
   e.preventDefault();
@@ -140,64 +123,29 @@ document.getElementById("testForm").addEventListener("submit", e => {
 
   let profile = "";
 
-  // Dominanze forti
-  if (action >= world && action >= people && action >= interact && action >= 20) {
-    profile = "Tiranno";
-  }
-  else if (world >= people && world >= action && world >= interact && world >= 20) {
+  if (world >= people && world >= action && world >= interact) {
     profile = "Stratega";
-  }
-
-  // Esplorazione
-  else if (interact > action && world > people) {
-    profile = "Cartografo";
-  }
-  else if (interact > action && people == world) {
-    profile = "Inventore";
-  }
-
-  // SocialitÃ 
-  else if (people > world && interact == action) {
+  } else if (people >= world && people >= action && people >= interact) {
     profile = "Curatore";
-  }
-  else if (people > world && action > interact) {
-    profile = "Araldo";
-  }
-
-  // Azione
-  else if (action >= interact && world == people) {
+  } else if (action >= world && action >= people && action >= interact) {
     profile = "Guerriero";
-  }
-  else {
+  } else {
     profile = "Cacciatore";
   }
 
-  const resultDiv = document.getElementById("result");
   document.querySelector(".quiz-container").style.display = "none";
 
-  resultDiv.style.display = "flex";
-  resultDiv.style.flexDirection = "column";
-  resultDiv.style.justifyContent = "center";
-  resultDiv.style.alignItems = "center";
-  resultDiv.style.minHeight = "60vh";
-  resultDiv.style.padding = "40px";
-  resultDiv.style.borderRadius = "12px";
+  const resultDiv = document.getElementById("result");
+  resultDiv.style.display = "block";
 
-  const ability = abilities[profile];
-
-resultDiv.innerHTML = `
-  <h2 style="font-family: chunko; font-size:50px; text-transform: uppercase; letter-spacing: 2px;">
-    ${icons[profile]} ${profile}
-  </h2>
-  <p style="font-size:26px; text-align:center; max-width:640px;">
-    ${descriptions[profile]}
-  </p>
-  <div style="margin-top:25px; padding:25px; border-radius:12px; background:rgba(0,0,0,.3)">
-    <h3 style="font-family: chunko; font-size:34px; text-transform: uppercase; letter-spacing: 1.5px;">
-      â­ ${ability.ability}
-    </h3>
-    <p style="font-size:22px">${ability.effect}</p>
-  </div>
-`;
-
+  resultDiv.innerHTML = `
+    <h2 style="font-size:48px">${icons[profile]} ${profile}</h2>
+    <p style="font-size:22px; max-width:600px; margin:auto;">
+      ${descriptions[profile]}
+    </p>
+    <div style="margin-top:30px; padding:20px; background:#222; border-radius:10px;">
+      <h3>${abilities[profile].ability}</h3>
+      <p>${abilities[profile].effect}</p>
+    </div>
+  `;
 });
